@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Wood from './Wood';
 
 // 0. React 엔진 - 데이터 변경 감지해서 UI를 그려줌
 // 1. 실행과정(index.html) - SPA
@@ -15,22 +16,37 @@ import './App.css';
 //     - 외부 파일에 적는 방법
 //     - 라이브러리 사용
 
-let a = 10;
-const b = 20; // 상수
+// let a = 10;
+// const b = 20; // 상수
+
+// function App() {
+//   let c;
+//   console.log(1, c);
+
+//   const mystyle = {
+//     color: 'blue',
+//   };
+
+//   return (
+//     <div>
+//       <div style={mystyle}>div태그 {a === 10 ? 'true' : 'false'}</div>
+//       <h1 className="box-style">h1태그 {b === 20 && 'true'}</h1>
+//       <hr />
+//       <Wood />
+//     </div>
+//   );
+// }
+
+let list = [1, 2, 3];
 
 function App() {
-  let c;
-  console.log(1, c);
-
-  const mystyle = {
-    color: 'blue',
-  };
-
   return (
     <div>
-      <div style={mystyle}>div태그 {a === 10 ? 'true' : 'false'}</div>
-      <h1 className="box-style">h1태그 {b === 20 && 'true'}</h1>
-      <hr />
+      <div>
+        {list.map((n) => (
+          <h1>{n}</h1>
+        ))}
+      </div>
     </div>
   );
 }
