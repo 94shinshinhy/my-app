@@ -46,6 +46,36 @@
       }); // 리턴을 못함
       const b5 = a5.map((n) => n + 1);
       console.log(`b5 : ${b5}`); // [2,3,4]
+
+      const data = { phone: '2222' };
+      const a6 = {
+        id: 1,
+        name: '홍길동',
+        phone: '1111',
+        age: 17,
+        gender: '남',
+      };
+      const b6 = { ...a6, ...data };
+      console.log(b6);
+
+      const users = [
+        { id: 1, name: '김김김', phone: '1111' },
+        { id: 2, name: '신신신', phone: '2222' },
+        { id: 3, name: '이이이', phone: '3333' },
+      ];
+
+      const updateUserDto = {
+        id: 2,
+        name: '홍길동',
+      };
+
+      //users[1].name = updateUserDto.name;
+
+      const newUsers = users.map((u) =>
+        u.id === updateUserDto.id ? { ...u, ...updateUserDto } : u,
+      );
+
+      console.log(newUsers);
     </script>
   </body>
 </html>
