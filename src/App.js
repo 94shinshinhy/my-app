@@ -1,45 +1,54 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
+// useMemo => 메모라이제이션(기억)
 function App() {
-  const [data, setData] = useState(0);
-  const [search, setSearch] = useState(0);
+  const [list, setList] = useState([1, 2, 3, 4]);
+  const [str, setStr] = useState('합계');
 
-  const download = () => {
-    // 통신을 통해 다운로드
-    let downloadData = 5;
-    setData(downloadData);
+  const getAddList = () => {
+    let sum = 0;
+    list.forEach((i) => (sum = sum + i));
+    console.log('sum', sum);
+    return sum;
   };
 
-  // 실행시점
-  // (1) App() 함수가 최초 실행될 때(App() 최초 그려질 때)
-  // (2) 상태 변수가 변경될 때(dependencyList에 등록되어있어야함)
-  // (3) 의존 리스트를 관리할 수 있음
-  useEffect(() => {
-    console.log('useEffect 실행됨');
-    download();
-  }, [search]); // search에 의존하기때문에 search가 변경되면 실행됨
+  const addResult = useMemo(() => getAddList(), [list]);
 
   return (
     <div>
       <button
         onClick={() => {
-          setSearch(2);
+          setStr('변경');
         }}
       >
-        검색
+        문자 변경
       </button>
-      <h1>데이터 : {data}</h1>
       <button
         onClick={() => {
-          setData(data + 1);
+          setList([...list, 10]);
         }}
       >
-        더하기
+        리스트 값 추가
       </button>
+      <div>
+        {list.map((i) => (
+          <h1>{i}</h1>
+        ))}
+      </div>
+      <div>
+        {str} : {addResult}
+      </div>
     </div>
   );
 }
 
 export default App;
+
+/**
+ * useMemo를 쓰지않고 getAddList를 실행하는 경우에는
+ * 문자를 변경할 때에도 데이터를 다시 그림
+ * useMemo를 위와같이 addResult를 실행하면
+ * 문자를 변경할 때에는 getAddList 함수가 실행되지않음
+ */
