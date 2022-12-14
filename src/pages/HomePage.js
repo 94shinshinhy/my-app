@@ -7,6 +7,7 @@ const HomePage = () => {
   // http 요청(fetch, axios)
   const [boards, setBoards] = useState([]);
   const [number, setNumber] = useState(0);
+  const [user, setUser] = useState({});
 
   // 빈 배열은 한번만 실행
   useEffect(() => {
@@ -18,6 +19,7 @@ const HomePage = () => {
     ];
 
     setBoards([...data]);
+    setUser({ id: 1, username: 'shin' });
   }, []);
 
   return (
@@ -28,6 +30,7 @@ const HomePage = () => {
         setBoards={setBoards}
         number={number}
         setNumber={setNumber}
+        user={user}
       />
       <Footer />
     </div>
