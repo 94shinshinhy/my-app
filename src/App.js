@@ -1,13 +1,14 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import ListPage from './pages/ListPage';
+import Bottom from './components/Bottom';
+import Top from './components/Top';
 
 function App() {
-  // 상태
-
   return (
-    <div>
-      <ListPage />
+    <div className="container">
+      <h1>최상단 화면</h1>
+      <Top />
+      <Bottom />
     </div>
   );
 }
